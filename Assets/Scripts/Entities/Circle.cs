@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Circle : MonoBehaviour, IEntity
+public class Circle : MonoBehaviour, IShapes
 {
-    [SerializeField] private new Tag tag;
+    [SerializeField] private new CollisionTag tag;
+    [SerializeField] private float rotateSpeed = 100;
 
-    Tag IEntity.tag { get => tag; set => tag = value; }
+    CollisionTag IEntity.tag { get => tag; set => tag = value; }
+    float IShapes.rotateSpeed { get => rotateSpeed; set => rotateSpeed = value; }
+
+    private void Update()
+    {
+        RotateAround();
+    }
+
+    public void RotateAround()
+    {
+        transform.Rotate(0f, rotateSpeed * Time.deltaTime, 0f);
+    }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface IEntity
 {
-    Tag tag { get; set; }
+    CollisionTag tag { get; set; }
 }
 
-public enum Tag
+public enum CollisionTag
 {
     player, win, damageable, nondamageable
 }

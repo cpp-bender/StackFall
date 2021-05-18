@@ -8,24 +8,23 @@ public class LevelSpawner : MonoBehaviour
 
     [SerializeField] private GameObject[] obstacleModel;
     [SerializeField] private GameObject winPrefab;
+    [SerializeField] private LevelData levelData;
     [HideInInspector] public GameObject[] obstaclePrefab = new GameObject[obstaclePrefabCount];
 
     private GameObject temp1Obstacle = null, temp2Obstacle = null;
-    public int level = 1, addNumber = 7;
-    public int startIndex, endIndex;
 
     public event System.Action<int, int> OnLevelChanged;
-    public int obstacleCount = 1;
 
     private void Awake()
     {
-        OnLevelChanged += Change;
+        OnLevelChanged += ChangeDifficulty;
+        levelData.Level = 1;
     }
 
-    private void Change(int StartIndex, int EndIndex)
+    private void ChangeDifficulty(int StartIndex, int EndIndex)
     {
-        startIndex = StartIndex;
-        endIndex = EndIndex;
+        levelData.StartIndex = StartIndex;
+        levelData.EndIndex = EndIndex;
     }
 
     private void Start()
@@ -43,15 +42,15 @@ public class LevelSpawner : MonoBehaviour
 
     private void CheckLevel()
     {
-        if (level < 20)
+        if (levelData.Level < 20)
         {
             OnLevelChanged?.Invoke(0, 2);
         }
-        else if (level >= 20 && level < 50)
+        else if (levelData.Level >= 20 && levelData.Level < 50)
         {
             OnLevelChanged?.Invoke(1, 3);
         }
-        else if (level >= 50 && level < 100)
+        else if (levelData.Level >= 50 && levelData.Level < 100)
         {
             OnLevelChanged?.Invoke(2, 4);
         }
@@ -72,10 +71,10 @@ public class LevelSpawner : MonoBehaviour
 
     private void InstantiateObstacles()
     {
-        float obstacleStartHeight = obstacleCount / 2;
+        float obstacleStartHeight = levelData.ObstacleCount / 2;
         for (float posY = obstacleStartHeight; posY > 0; posY -= .5f)
         {
-            GameObject randomObstacle = obstaclePrefab[Random.Range(startIndex, endIndex)];
+            GameObject randomObstacle = obstaclePrefab[Random.Range(levelData.StartIndex, levelData.EndIndex)];
             Vector3 obstaclePosition = new Vector3(0f, posY, 0f);
             Quaternion obstacleQuaternion = Quaternion.Euler(0, posY * 10, 0);
             temp1Obstacle = Instantiate(randomObstacle, obstaclePosition, obstacleQuaternion, transform);

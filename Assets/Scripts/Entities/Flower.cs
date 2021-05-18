@@ -2,8 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flower : MonoBehaviour, IEntity
+public class Flower : MonoBehaviour, IShapes
 {
-    [SerializeField] private new Tag tag;
-    Tag IEntity.tag { get => tag; set => tag = value; }
+    [SerializeField] private new CollisionTag tag;
+    [SerializeField] private float rotateSpeed = 100;
+
+    float IShapes.rotateSpeed { get => rotateSpeed; set => rotateSpeed=value; }
+    CollisionTag IEntity.tag { get => tag; set => tag = value; }
+
+    private void Update()
+    {
+        RotateAround();
+    }
+
+    public void RotateAround()
+    {
+        transform.Rotate(0f, rotateSpeed * Time.deltaTime, 0f);
+    }
 }

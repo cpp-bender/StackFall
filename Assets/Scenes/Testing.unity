@@ -227,12 +227,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2880750301002874385, guid: 70ae52cc595ac5a43a8bcb8405408dea,
-        type: 3}
-      propertyPath: cameraData
-      value: 
-      objectReference: {fileID: 11400000, guid: 409e41c5c1b5f3c49bb1c89bfa1508fe,
-        type: 2}
     - target: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -287,11 +281,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880750301002874387, guid: 70ae52cc595ac5a43a8bcb8405408dea,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2880750301002874390, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
@@ -459,16 +448,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5122141731913813022, guid: fd645ed6885df634499df18957f5547a,
-        type: 3}
-      propertyPath: obstacleCount
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5122141731913813022, guid: fd645ed6885df634499df18957f5547a,
-        type: 3}
-      propertyPath: level
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5122141731913813023, guid: fd645ed6885df634499df18957f5547a,
         type: 3}

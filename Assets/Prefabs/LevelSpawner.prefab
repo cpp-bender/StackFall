@@ -71,3 +71,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  level: 1
+  addNumber: 7
+  startIndex: 0
+  endIndex: 0
+  obstacleCount: 16

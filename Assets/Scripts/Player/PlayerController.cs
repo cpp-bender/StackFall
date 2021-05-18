@@ -6,14 +6,20 @@ public class PlayerController : MonoBehaviour, IEntity
 {
     [SerializeField] private PlayerData playerData;
     [SerializeField] private CameraData cameraData;
-    [SerializeField] private new Tag tag;
+    [SerializeField] private LevelData levelData;
+    [SerializeField] private new CollisionTag tag;
 
     private Rigidbody body;
-    Tag IEntity.tag { get => tag; set => tag = value; }
+    CollisionTag IEntity.tag { get => tag; set => tag = value; }
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
-        body = GetComponent<Rigidbody>();
+        transform.position = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
         playerData.CanHit = false;
     }
 
@@ -47,7 +53,7 @@ public class PlayerController : MonoBehaviour, IEntity
         else
         {
             var entity = collision.gameObject.GetComponent<IEntity>();
-            if (entity.tag == Tag.damageable)
+            if (entity.tag == CollisionTag.damageable)
             {
                 Destroy(collision.transform.parent.gameObject);
                 cameraData.CanFollow = true;
