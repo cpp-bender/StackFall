@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController :MonoBehaviour
+public class PlayerController : MonoBehaviour, IEntity
 {
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private CameraData cameraData;
+    [SerializeField] private new Tag tag;
 
     private Rigidbody body;
+    Tag IEntity.tag { get => tag; set => tag = value; }
 
     private void Start()
     {
@@ -25,6 +28,7 @@ public class PlayerController :MonoBehaviour
             playerData.CanHit = false;
         }
     }
+
     private void FixedUpdate()
     {
         if (playerData.CanHit)
@@ -38,6 +42,16 @@ public class PlayerController :MonoBehaviour
         if (!playerData.CanHit)
         {
             MoveUp();
+            cameraData.CanFollow = false;
+        }
+        else
+        {
+            var entity = collision.gameObject.GetComponent<IEntity>();
+            if (entity.tag == Tag.damageable)
+            {
+                Destroy(collision.transform.parent.gameObject);
+                cameraData.CanFollow = true;
+            }
         }
     }
 

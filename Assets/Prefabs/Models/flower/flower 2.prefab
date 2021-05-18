@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4548157771206611294}
   - component: {fileID: 2594035321123775913}
   - component: {fileID: 4567513347842760228}
-  - component: {fileID: 5985929493709527775}
+  - component: {fileID: 3312681831605389600}
   m_Layer: 0
   m_Name: 4
   m_TagString: enemy
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5985929493709527775
+--- !u!114 &3312681831605389600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4548157771204349840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8d01a1a3870024f916cc94be1071e5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: 2
 --- !u!1 &4548157771204349848
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +134,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4548157771204711352}
-  - component: {fileID: 5699657196407202537}
   m_Layer: 0
   m_Name: flower 2
   m_TagString: Untagged
@@ -159,23 +159,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5699657196407202537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4548157771204349848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d0cfe09a5dfb94e8b44e9e93a39f57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacles:
-  - {fileID: 2844352224689132169}
-  - {fileID: 8615784189843093115}
-  - {fileID: 8019527815943648565}
-  - {fileID: 5985929493709527775}
 --- !u!1 &4548157771204349850
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +172,7 @@ GameObject:
   - component: {fileID: 4548157771206611288}
   - component: {fileID: 2479927822380142919}
   - component: {fileID: 1001179671170573838}
-  - component: {fileID: 2844352224689132169}
+  - component: {fileID: 2647053278499954444}
   m_Layer: 0
   m_Name: 1
   m_TagString: plane
@@ -288,7 +271,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2844352224689132169
+--- !u!114 &2647053278499954444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,9 +280,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4548157771204349850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8d01a1a3870024f916cc94be1071e5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: 3
 --- !u!1 &4548157771204349852
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +297,7 @@ GameObject:
   - component: {fileID: 4548157771206611290}
   - component: {fileID: 5827043434828271286}
   - component: {fileID: 2373144760403464195}
-  - component: {fileID: 8615784189843093115}
+  - component: {fileID: 2607935939743924926}
   m_Layer: 0
   m_Name: 2
   m_TagString: plane
@@ -412,7 +396,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8615784189843093115
+--- !u!114 &2607935939743924926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,9 +405,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4548157771204349852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8d01a1a3870024f916cc94be1071e5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: 3
 --- !u!1 &4548157771204349854
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +422,7 @@ GameObject:
   - component: {fileID: 4548157771206611292}
   - component: {fileID: 2342510595836965304}
   - component: {fileID: 5302243511493375645}
-  - component: {fileID: 8019527815943648565}
+  - component: {fileID: 3519422049180887836}
   m_Layer: 0
   m_Name: 3
   m_TagString: enemy
@@ -536,7 +521,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8019527815943648565
+--- !u!114 &3519422049180887836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,6 +530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4548157771204349854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8d01a1a3870024f916cc94be1071e5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: 2
