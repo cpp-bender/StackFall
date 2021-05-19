@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -13,7 +11,6 @@ public class CameraController : MonoBehaviour
         SetCamPosition();
     }
 
-
     private void Update()
     {
         FollowByPosition();
@@ -21,7 +18,8 @@ public class CameraController : MonoBehaviour
 
     private void FollowByPosition()
     {
-        if (cameraData.CanFollow)
+        float posY = transform.position.y;
+        if (cameraData.CanFollow && posY > 7f)
         {
             transform.position = Vector3.Lerp(transform.position, player.position + cameraData.CamOffset, cameraData.CameraFollowSpeed * Time.deltaTime);
         }

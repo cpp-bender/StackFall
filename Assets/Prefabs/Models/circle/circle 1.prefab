@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
+  rotateSpeed: 100
 --- !u!1 &992441524142787586
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
+  rotateSpeed: 100
 --- !u!1 &992441524142787588
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992441524142787588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.21643962, z: 0, w: 0.976296}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -409,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100
 --- !u!1 &992441524142787596
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,3 +537,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
+  rotateSpeed: 100

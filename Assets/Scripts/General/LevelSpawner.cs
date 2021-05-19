@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
 {
@@ -11,14 +9,14 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private LevelData levelData;
     [HideInInspector] public GameObject[] obstaclePrefab = new GameObject[obstaclePrefabCount];
 
-    private GameObject temp1Obstacle = null, temp2Obstacle = null;
+    private GameObject polySurface = null, win = null;
 
     public event System.Action<int, int> OnLevelChanged;
+    public int luckCount = 0;
 
     private void Awake()
     {
         OnLevelChanged += ChangeDifficulty;
-        levelData.Level = 1;
     }
 
     private void ChangeDifficulty(int StartIndex, int EndIndex)
@@ -74,11 +72,25 @@ public class LevelSpawner : MonoBehaviour
         float obstacleStartHeight = levelData.ObstacleCount / 2;
         for (float posY = obstacleStartHeight; posY > 0; posY -= .5f)
         {
-            GameObject randomObstacle = obstaclePrefab[Random.Range(levelData.StartIndex, levelData.EndIndex)];
+            polySurface = obstaclePrefab[Random.Range(levelData.StartIndex, levelData.EndIndex)];
             Vector3 obstaclePosition = new Vector3(0f, posY, 0f);
-            Quaternion obstacleQuaternion = Quaternion.Euler(0, posY * 10, 0);
-            temp1Obstacle = Instantiate(randomObstacle, obstaclePosition, obstacleQuaternion, transform);
+            polySurface.transform.eulerAngles = new Vector3(0f, posY * 10, 0f);
+            polySurface.transform.eulerAngles += Roll(20);
+            polySurface = Instantiate(polySurface, obstaclePosition, polySurface.transform.rotation, transform);
         }
-        temp2Obstacle = Instantiate(winPrefab, Vector3.zero, Quaternion.identity, transform);
+        win = Instantiate(winPrefab, Vector3.zero, Quaternion.identity, transform);
+    }
+
+    private Vector3 Roll(float percent)
+    {
+        float dice = Random.Range(0, 100 / percent);
+        if ((int)dice == 0)
+        {
+            return (Vector3.up * 180);
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 }
