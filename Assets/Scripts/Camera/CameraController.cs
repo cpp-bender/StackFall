@@ -2,13 +2,12 @@
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player, win;
+    [SerializeField] private Transform player;
     [SerializeField] private CameraData cameraData;
 
     private void Start()
     {
         SetCamRotation();
-        SetCamPosition();
     }
 
     private void Update()
@@ -25,7 +24,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void SetCamPosition()
+    public void SetCamPosition()
     {
         transform.position = player.position + cameraData.CamOffset;
     }

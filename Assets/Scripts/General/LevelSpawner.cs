@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSpawner : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private GameObject[] obstacleModel;
     [SerializeField] private GameObject winPrefab;
     [SerializeField] private LevelData levelData;
+    [SerializeField] private CameraController cameraController;
     [HideInInspector] public GameObject[] obstaclePrefab = new GameObject[obstaclePrefabCount];
 
     private GameObject polySurface = null, win = null;
@@ -18,20 +20,27 @@ public class LevelSpawner : MonoBehaviour
         OnLevelChanged += ChangeDifficulty;
     }
 
+    private void Start()
+    {
+        GenerateLevel();
+        cameraController.SetCamPosition();
+    }
+
+    public void NextLevel()
+    {
+        levelData.Level++;
+        levelData.ObstacleCount++;
+        SceneManager.LoadScene(0);
+    }
+
     private void ChangeDifficulty(int StartIndex, int EndIndex)
     {
         levelData.StartIndex = StartIndex;
         levelData.EndIndex = EndIndex;
     }
 
-    private void Start()
-    {
-        GenerateLevel();
-    }
-
     private void GenerateLevel()
     {
-        //Generates a level randomly
         CheckLevel();
         CreateObstacles();
         InstantiateObstacles();

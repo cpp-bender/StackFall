@@ -2,25 +2,23 @@
 
 public class PlayerController : MonoBehaviour, IEntity
 {
-    enum State
+    public enum State
     {
-        playing, invincible, dead
+        idle, playing, invincible, dead, win
     }
 
     [SerializeField] private PlayerData playerData;
     [SerializeField] private CameraData cameraData;
     [SerializeField] private LevelData levelData;
     [SerializeField] private GameObject fireParticle;
+    [SerializeField] private LevelSpawner levelSpawner;
     [SerializeField] private new CollisionTag tag;
 
+    [HideInInspector] public State state;
     private Rigidbody body;
     private Vector3 startPos;
-    private State state;
     private float invincibleTime;
     private const float invincibleTimeFactor = 8;
-
-
-    private float jumpVelocity;
     CollisionTag IEntity.tag { get => tag; set => tag = value; }
 
     private void Awake()
@@ -42,27 +40,44 @@ public class PlayerController : MonoBehaviour, IEntity
         CheckInput();
     }
 
+    private void FixedUpdate()
+    {
+        MoveDown();
+    }
+
     private void CheckInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
             playerData.CanHit = true;
+            state = State.playing;
         }
         if (Input.GetMouseButtonUp(0))
         {
             playerData.CanHit = false;
+            state = State.idle;
         }
     }
 
     private void CheckCurrentState()
     {
+        if (state == State.idle)
+        {
+            fireParticle.SetActive(false);
+        }
         if (state == State.invincible)
         {
             fireParticle.SetActive(true);
         }
-        if (state == State.playing)
+        if (state == State.dead)
         {
             fireParticle.SetActive(false);
+            Debug.Log("Game Over!");
+        }
+        if (state == State.win)
+        {
+            fireParticle.SetActive(false);
+            levelSpawner.NextLevel();
         }
         if (state == State.dead)
         {
@@ -71,18 +86,12 @@ public class PlayerController : MonoBehaviour, IEntity
         }
     }
 
-    private void FixedUpdate()
-    {
-        MoveDown();
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (!playerData.CanHit)
         {
             MoveUp();
             invincibleTime = 0;
-            state = State.playing;
             cameraData.CanFollow = false;
         }
         else
@@ -103,7 +112,6 @@ public class PlayerController : MonoBehaviour, IEntity
                 //Game ending
                 invincibleTime = 0;
                 state = State.dead;
-                Debug.Log("Game Over!");
             }
         }
     }
@@ -125,8 +133,7 @@ public class PlayerController : MonoBehaviour, IEntity
     {
         if (playerData.CanHit)
         {
-
-            body.velocity += Vector3.down * playerData.Speed * Time.fixedDeltaTime;
+            body.velocity = Vector3.down * playerData.Speed * Time.fixedDeltaTime;
         }
     }
 }

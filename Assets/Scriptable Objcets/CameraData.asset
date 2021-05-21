@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camOffset: {x: 0, y: 2, z: -8}
   camAngle: 20
-  cameraFollowSpeed: 10
+  cameraFollowSpeed: 2
   canFollow: 0

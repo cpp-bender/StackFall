@@ -24,6 +24,7 @@ public class Win : MonoBehaviour, IShapes
         if (entity.tag == CollisionTag.player)
         {
             Debug.Log("You Win!");
+            collision.gameObject.GetComponent<PlayerController>().state = PlayerController.State.win;
         }
     }
 }

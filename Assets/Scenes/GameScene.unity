@@ -200,6 +200,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 84be004fdf2a83a4ea22414da3c18066,
         type: 2}
+    - target: {fileID: 5122141731913813022, guid: fd645ed6885df634499df18957f5547a,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 963194229}
     - target: {fileID: 5122141731913813023, guid: fd645ed6885df634499df18957f5547a,
         type: 3}
       propertyPath: m_Name
@@ -396,7 +401,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1231270699}
-  win: {fileID: 3293644397374158466, guid: de014377afc97fb458185f5869ca0bd9, type: 3}
   cameraData: {fileID: 11400000, guid: 409e41c5c1b5f3c49bb1c89bfa1508fe, type: 2}
 --- !u!1001 &1068197862
 PrefabInstance:
@@ -410,6 +414,11 @@ PrefabInstance:
       propertyPath: fireParticle
       value: 
       objectReference: {fileID: 449956246}
+    - target: {fileID: 2880750301002874385, guid: 70ae52cc595ac5a43a8bcb8405408dea,
+        type: 3}
+      propertyPath: levelSpawner
+      value: 
+      objectReference: {fileID: 1182084374}
     - target: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -472,6 +481,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70ae52cc595ac5a43a8bcb8405408dea, type: 3}
+--- !u!114 &1182084374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122141731913813022, guid: fd645ed6885df634499df18957f5547a,
+    type: 3}
+  m_PrefabInstance: {fileID: 495108080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322d180998413164e8dce53f396a6e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1231270699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   level: 1
-  addNumber: 0
-  obstacleCount: 100
+  obstacleCount: 8
   startIndex: 0
   endIndex: 2
