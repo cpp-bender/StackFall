@@ -106,12 +106,14 @@ public class PlayerController : MonoBehaviour, IEntity
                     state = State.invincible;
                 }
                 cameraData.CanFollow = true;
+                GameManager.instance.AddScore();
             }
             else if (entity.tag == CollisionTag.nondamageable)
             {
                 //Game ending
                 invincibleTime = 0;
                 state = State.dead;
+                GameManager.instance.ResetScore();
             }
         }
     }
