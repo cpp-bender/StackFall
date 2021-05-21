@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8528561060961582267}
   - component: {fileID: 5104876255075948439}
   - component: {fileID: 7553405903805719929}
-  - component: {fileID: 4578981680395068017}
+  - component: {fileID: 3081325996690623915}
   m_Layer: 0
   m_Name: 4
   m_TagString: enemy
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4578981680395068017
+--- !u!114 &3081325996690623915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528561060963508853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28a4746eff51fc49bad3e984f206011, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
+  rotateSpeed: 100
 --- !u!1 &8528561060963508857
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +139,7 @@ GameObject:
   - component: {fileID: 8528561060961582271}
   - component: {fileID: 1461573535655487998}
   - component: {fileID: 2206637096274983985}
-  - component: {fileID: 4743040404603175513}
+  - component: {fileID: 2381820711953708702}
   m_Layer: 0
   m_Name: 2
   m_TagString: plane
@@ -237,7 +238,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4743040404603175513
+--- !u!114 &2381820711953708702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,10 +247,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528561060963508857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28a4746eff51fc49bad3e984f206011, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100
 --- !u!1 &8528561060963508859
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +265,7 @@ GameObject:
   - component: {fileID: 8528561060961582265}
   - component: {fileID: 89543811169548510}
   - component: {fileID: 2781562196361709876}
-  - component: {fileID: 3160308462288444092}
+  - component: {fileID: 8850822806450605842}
   m_Layer: 0
   m_Name: 3
   m_TagString: plane
@@ -362,7 +364,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3160308462288444092
+--- !u!114 &8850822806450605842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,10 +373,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528561060963508859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28a4746eff51fc49bad3e984f206011, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100
 --- !u!1 &8528561060963508861
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8528561060963352157}
+  - component: {fileID: 858534127920256684}
   m_Layer: 0
   m_Name: circle 3
   m_TagString: Untagged
@@ -409,6 +413,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &858534127920256684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528561060963508861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27773e4a8f323d842ad90f525a4416a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 8047766066113745146}
+  - {fileID: 2381820711953708702}
+  - {fileID: 8850822806450605842}
+  - {fileID: 3081325996690623915}
 --- !u!1 &8528561060963508863
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +443,7 @@ GameObject:
   - component: {fileID: 8528561060961582269}
   - component: {fileID: 5868034610792681402}
   - component: {fileID: 8770225642705367195}
-  - component: {fileID: 6099866515158708856}
+  - component: {fileID: 8047766066113745146}
   m_Layer: 0
   m_Name: 1
   m_TagString: plane
@@ -521,7 +542,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6099866515158708856
+--- !u!114 &8047766066113745146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -530,7 +551,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528561060963508863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28a4746eff51fc49bad3e984f206011, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100

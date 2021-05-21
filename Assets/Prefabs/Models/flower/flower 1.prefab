@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5960452819306148684}
   - component: {fileID: 5644796242075715515}
   - component: {fileID: 5454841249393017064}
-  - component: {fileID: 3977832811277686549}
+  - component: {fileID: 1354750669094910159}
   m_Layer: 0
   m_Name: 4
   m_TagString: enemy
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3977832811277686549
+--- !u!114 &1354750669094910159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5960452819303886210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 5960452819306148682}
   - component: {fileID: 5747714696003695445}
   - component: {fileID: 6082912173079370697}
-  - component: {fileID: 338867621757419395}
+  - component: {fileID: 7802429098018771784}
   m_Layer: 0
   m_Name: 1
   m_TagString: plane
@@ -238,7 +238,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &338867621757419395
+--- !u!114 &7802429098018771784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5960452819303886216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
@@ -261,6 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5960452819303723434}
+  - component: {fileID: 8733190851398301709}
   m_Layer: 0
   m_Name: flower 1
   m_TagString: Untagged
@@ -275,7 +276,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5960452819303886218}
-  m_LocalRotation: {x: 0, y: 0.043619387, z: 0, w: 0.99904823}
+  m_LocalRotation: {x: 0, y: 0.9961947, z: 0, w: -0.08715577}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -286,6 +287,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8733190851398301709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960452819303886218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27773e4a8f323d842ad90f525a4416a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 7802429098018771784}
+  - {fileID: 1602088921761679086}
+  - {fileID: 755248695328760443}
+  - {fileID: 1354750669094910159}
 --- !u!1 &5960452819303886220
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +317,7 @@ GameObject:
   - component: {fileID: 5960452819306148686}
   - component: {fileID: 5560751328029266858}
   - component: {fileID: 7109531940133235694}
-  - component: {fileID: 7943179434052020927}
+  - component: {fileID: 755248695328760443}
   m_Layer: 0
   m_Name: 3
   m_TagString: enemy
@@ -398,7 +416,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7943179434052020927
+--- !u!114 &755248695328760443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,7 +425,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5960452819303886220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2
@@ -425,7 +443,7 @@ GameObject:
   - component: {fileID: 5960452819306148680}
   - component: {fileID: 4428256721239157924}
   - component: {fileID: 2075223887167192125}
-  - component: {fileID: 2147227128748429024}
+  - component: {fileID: 1602088921761679086}
   m_Layer: 0
   m_Name: 2
   m_TagString: enemy
@@ -524,7 +542,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2147227128748429024
+--- !u!114 &1602088921761679086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,7 +551,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5960452819303886222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2a55c0aaff8b7489e165136457c894, type: 3}
+  m_Script: {fileID: 11500000, guid: baa3a6e51c45198428625e93d56d2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 2

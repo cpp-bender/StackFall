@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100
 --- !u!1 &3293644397374515878
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,3 +234,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  rotateSpeed: 100

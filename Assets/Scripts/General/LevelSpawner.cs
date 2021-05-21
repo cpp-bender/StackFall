@@ -12,7 +12,6 @@ public class LevelSpawner : MonoBehaviour
     private GameObject polySurface = null, win = null;
 
     public event System.Action<int, int> OnLevelChanged;
-    public int luckCount = 0;
 
     private void Awake()
     {

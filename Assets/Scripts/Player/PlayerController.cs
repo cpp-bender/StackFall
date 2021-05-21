@@ -2,12 +2,25 @@
 
 public class PlayerController : MonoBehaviour, IEntity
 {
+    enum State
+    {
+        playing, invincible, dead
+    }
+
     [SerializeField] private PlayerData playerData;
     [SerializeField] private CameraData cameraData;
     [SerializeField] private LevelData levelData;
+    [SerializeField] private GameObject fireParticle;
     [SerializeField] private new CollisionTag tag;
 
     private Rigidbody body;
+    private Vector3 startPos;
+    private State state;
+    private float invincibleTime;
+    private const float invincibleTimeFactor = 8;
+
+
+    private float jumpVelocity;
     CollisionTag IEntity.tag { get => tag; set => tag = value; }
 
     private void Awake()
@@ -17,11 +30,19 @@ public class PlayerController : MonoBehaviour, IEntity
 
     private void Start()
     {
-        transform.position = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
-        playerData.CanHit = false;
+        startPos = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
+        transform.position = startPos;
+        state = State.playing;
+        fireParticle.SetActive(false);
     }
 
     private void Update()
+    {
+        CheckCurrentState();
+        CheckInput();
+    }
+
+    private void CheckInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -33,12 +54,26 @@ public class PlayerController : MonoBehaviour, IEntity
         }
     }
 
+    private void CheckCurrentState()
+    {
+        if (state == State.invincible)
+        {
+            fireParticle.SetActive(true);
+        }
+        if (state == State.playing)
+        {
+            fireParticle.SetActive(false);
+        }
+        if (state == State.dead)
+        {
+            fireParticle.SetActive(false);
+            Debug.Log("Game Over!");
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (playerData.CanHit)
-        {
-            MoveDown();
-        }
+        MoveDown();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,6 +81,8 @@ public class PlayerController : MonoBehaviour, IEntity
         if (!playerData.CanHit)
         {
             MoveUp();
+            invincibleTime = 0;
+            state = State.playing;
             cameraData.CanFollow = false;
         }
         else
@@ -53,8 +90,20 @@ public class PlayerController : MonoBehaviour, IEntity
             var entity = collision.gameObject.GetComponent<IEntity>();
             if (entity.tag == CollisionTag.damageable)
             {
-                Destroy(collision.transform.parent.gameObject);
+                collision.transform.parent.GetComponent<ObstacleManager>().Shatter();
+                invincibleTime += Time.deltaTime * invincibleTimeFactor;
+                if (invincibleTime >= 1)
+                {
+                    state = State.invincible;
+                }
                 cameraData.CanFollow = true;
+            }
+            else if (entity.tag == CollisionTag.nondamageable)
+            {
+                //Game ending
+                invincibleTime = 0;
+                state = State.dead;
+                Debug.Log("Game Over!");
             }
         }
     }
@@ -74,6 +123,10 @@ public class PlayerController : MonoBehaviour, IEntity
 
     private void MoveDown()
     {
-        body.velocity = Vector3.down * playerData.Speed * Time.fixedDeltaTime;
+        if (playerData.CanHit)
+        {
+
+            body.velocity += Vector3.down * playerData.Speed * Time.fixedDeltaTime;
+        }
     }
 }

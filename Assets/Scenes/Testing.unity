@@ -217,10 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fa7cc32a7e72c4c9d9c52a8d0b9563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1146974931}
+  player: {fileID: 1973765763}
   win: {fileID: 3293644397374158466, guid: de014377afc97fb458185f5869ca0bd9, type: 3}
   cameraData: {fileID: 11400000, guid: 409e41c5c1b5f3c49bb1c89bfa1508fe, type: 2}
---- !u!1001 &795021779
+--- !u!1001 &770880466
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -235,12 +235,12 @@ PrefabInstance:
     - target: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
         type: 3}
@@ -381,13 +381,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &1146974931 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
-    type: 3}
-  m_PrefabInstance: {fileID: 795021779}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2022796620
+--- !u!1001 &1062835156
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -449,6 +443,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5122141731913813022, guid: fd645ed6885df634499df18957f5547a,
+        type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 84be004fdf2a83a4ea22414da3c18066,
+        type: 2}
     - target: {fileID: 5122141731913813023, guid: fd645ed6885df634499df18957f5547a,
         type: 3}
       propertyPath: m_Name
@@ -456,3 +456,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd645ed6885df634499df18957f5547a, type: 3}
+--- !u!4 &1973765763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2880750301002874386, guid: 70ae52cc595ac5a43a8bcb8405408dea,
+    type: 3}
+  m_PrefabInstance: {fileID: 770880466}
+  m_PrefabAsset: {fileID: 0}
