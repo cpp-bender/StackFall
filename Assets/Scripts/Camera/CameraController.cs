@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         SetCamRotation();
+        SetCamPosition(player.position);
     }
 
     private void Update()
@@ -24,9 +25,9 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void SetCamPosition()
+    public void SetCamPosition(Vector3 position)
     {
-        transform.position = player.position + cameraData.CamOffset;
+        transform.position = position + cameraData.CamOffset;
     }
 
     private void SetCamRotation()

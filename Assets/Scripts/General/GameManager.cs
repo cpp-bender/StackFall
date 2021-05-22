@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private const int startLevel = 1;
+    private const int startObstacleCount = 8;
+
     public static GameManager instance;
 
-    private int score;
+    [SerializeField] LevelData levelData;
+    [SerializeField] private int score;
 
     private void Awake()
+    {
+        Singleton();
+    }
+
+    private void Start()
+    {
+        levelData.Level = startLevel;
+        levelData.ObstacleCount = startObstacleCount;
+        SoundController.instance.StartBackgroundMusic();
+    }
+
+    private void Singleton()
     {
         if (instance)
         {

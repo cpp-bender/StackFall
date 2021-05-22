@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Stack Fall/Player/Player Data")]
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Stack Fall/Player/Player Data")]
 public class PlayerData : ScriptableObject
 {
     [SerializeField] private float speed;

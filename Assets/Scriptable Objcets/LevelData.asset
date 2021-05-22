@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   obstacleCount: 8
-  startIndex: 0
-  endIndex: 2
+  startIndex: 1
+  endIndex: 3

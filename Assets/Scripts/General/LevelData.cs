@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Stack Fall/Level/Level Data")]
+[CreateAssetMenu(fileName = "LevelData", menuName = "Stack Fall/Level/Level Data")]
 public class LevelData : ScriptableObject
 {
     [SerializeField] private int level = 1;

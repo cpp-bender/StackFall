@@ -23,7 +23,6 @@ public class LevelSpawner : MonoBehaviour
     private void Start()
     {
         GenerateLevel();
-        cameraController.SetCamPosition();
     }
 
     public void NextLevel()

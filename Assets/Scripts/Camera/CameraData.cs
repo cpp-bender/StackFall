@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Stack Fall/Camera/Camera Data")]
+[CreateAssetMenu(fileName = "CameraData", menuName = "Stack Fall/Camera/Camera Data")]
 public class CameraData : ScriptableObject
 {
     [SerializeField] private Vector3 camOffset;

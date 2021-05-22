@@ -66,13 +66,10 @@ MonoBehaviour:
   - {fileID: 7491820912803991582, guid: 13c675376bea900468cb73697e203899, type: 3}
   winPrefab: {fileID: 3293644397374515874, guid: de014377afc97fb458185f5869ca0bd9,
     type: 3}
+  levelData: {fileID: 11400000, guid: 84be004fdf2a83a4ea22414da3c18066, type: 2}
+  cameraController: {fileID: 0}
   obstaclePrefab:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  level: 1
-  addNumber: 7
-  startIndex: 0
-  endIndex: 0
-  obstacleCount: 16

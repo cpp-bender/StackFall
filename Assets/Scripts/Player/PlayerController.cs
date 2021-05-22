@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour, IEntity
     [SerializeField] private LevelData levelData;
     [SerializeField] private GameObject fireParticle;
     [SerializeField] private LevelSpawner levelSpawner;
+    [SerializeField] private CameraController cameraController;
     [SerializeField] private new CollisionTag tag;
 
     [HideInInspector] public State state;
     private Rigidbody body;
-    private Vector3 startPos;
     private float invincibleTime;
     private const float invincibleTimeFactor = 8;
     CollisionTag IEntity.tag { get => tag; set => tag = value; }
@@ -28,10 +28,9 @@ public class PlayerController : MonoBehaviour, IEntity
 
     private void Start()
     {
-        startPos = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
-        transform.position = startPos;
+        transform.position = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
+        cameraController.SetCamPosition(transform.position);
         state = State.playing;
-        fireParticle.SetActive(false);
     }
 
     private void Update()
@@ -100,6 +99,7 @@ public class PlayerController : MonoBehaviour, IEntity
             if (entity.tag == CollisionTag.damageable)
             {
                 collision.transform.parent.GetComponent<ObstacleManager>().Shatter();
+                SoundController.instance.PlayBreakStackMusic();
                 invincibleTime += Time.deltaTime * invincibleTimeFactor;
                 if (invincibleTime >= 1)
                 {
@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour, IEntity
     private void MoveUp()
     {
         body.velocity = Vector3.up * playerData.Speed * Time.deltaTime;
+        SoundController.instance.PlayJumpMusic();
     }
 
     private void MoveDown()
