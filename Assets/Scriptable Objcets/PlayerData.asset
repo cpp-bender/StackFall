@@ -15,5 +15,6 @@ MonoBehaviour:
   speed: 200
   canHit: 0
   invincibleTime: 0
-  invincibleTimeFactor: 8
+  invincibleTimeFactor: 4
   state: 0
+  material: {fileID: 2100000, guid: 77f7cf73e9f32d44f8bee7674555f07d, type: 2}

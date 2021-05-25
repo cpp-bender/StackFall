@@ -27,11 +27,15 @@ public class PlayerController : MonoBehaviour, IEntity
         playerData.State = State.idle;
         levelData.ShatteredObstacleCount = 0;
         GameManager.instance.ResetScore();
+        ChangeMaterial();
     }
 
     private void ChangeMaterial()
     {
-        //TODO: Change player material each level
+        float r = Random.Range(20, 200) / (float)255;
+        float g = Random.Range(50, 100) / (float)255;
+        float b = Random.Range(30, 255) / (float)255;
+        playerData.Material.color = new Color(r, g, b, 1);
     }
 
     private void Update()
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour, IEntity
         {
             playerData.CanHit = false;
             playerData.State = State.idle;
+            uiController.ResetCircleSlider();
         }
     }
 
@@ -67,7 +72,6 @@ public class PlayerController : MonoBehaviour, IEntity
         if (playerData.State == State.invincible)
         {
             fireParticle.SetActive(true);
-            SoundController.instance.PlayPlayerInvincibleMusic();
         }
         if (playerData.State == State.dead)
         {
@@ -78,11 +82,6 @@ public class PlayerController : MonoBehaviour, IEntity
         {
             fireParticle.SetActive(false);
             levelSpawner.NextLevel();
-        }
-        if (playerData.State == State.dead)
-        {
-            fireParticle.SetActive(false);
-            Debug.Log("Game Over!");
         }
     }
 
@@ -102,12 +101,16 @@ public class PlayerController : MonoBehaviour, IEntity
             {
                 collision.transform.parent.GetComponent<ObstacleManager>().Shatter();
                 levelData.ShatteredObstacleCount++;
-                uiController.FillSlider(levelData.ShatteredObstacleCount / (float)levelData.CurrentObstacleCount);
-                SoundController.instance.PlayBreakStackMusic();
+                uiController.FillLevelSlider(levelData.ShatteredObstacleCount / (float)levelData.CurrentObstacleCount);
                 playerData.InvincibleTime += Time.deltaTime * playerData.InvincibleTimeFactor;
                 if (playerData.InvincibleTime >= 1)
                 {
                     playerData.State = State.invincible;
+                    SoundController.instance.PlayBreakStackMusic();
+                }
+                else
+                {
+                    SoundController.instance.PlayBreakStackMusic();
                 }
                 cameraData.CanFollow = true;
                 GameManager.instance.AddScore();
@@ -140,6 +143,7 @@ public class PlayerController : MonoBehaviour, IEntity
         if (playerData.CanHit)
         {
             body.velocity = Vector3.down * playerData.Speed * Time.fixedDeltaTime;
+            uiController.FillCircleSlider(playerData.InvincibleTime);
         }
     }
 }

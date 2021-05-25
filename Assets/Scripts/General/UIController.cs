@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -8,23 +6,35 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image levelSlider;
     [SerializeField] private Image currentLevelImage;
     [SerializeField] private Image nextLevelImage;
-    [SerializeField] private Transform player;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Image circleSlider;
+    [SerializeField] private PlayerData playerData;
 
     private Text currentLevelText;
     private Text nextLevelText;
-    private Material playerMat;
     private int score;
 
     private void Start()
     {
-        playerMat = player.GetChild(0).transform.GetComponent<MeshRenderer>().material;
-        currentLevelImage.color = playerMat.color;
-        nextLevelImage.color = playerMat.color;
-        levelSlider.color = playerMat.color;
+        currentLevelImage.color = playerData.Material.color;
+        nextLevelImage.color = playerData.Material.color;
+        levelSlider.color = playerData.Material.color;
+        circleSlider.color = playerData.Material.color;
     }
 
-    public void FillSlider(float amount)
+    public void FillCircleSlider(float amount)
+    {
+        circleSlider.color = playerData.Material.color;
+        circleSlider.gameObject.SetActive(true);
+        circleSlider.fillAmount = amount;
+    }
+
+    public void ResetCircleSlider()
+    {
+        circleSlider.fillAmount = 0f;
+    }
+
+    public void FillLevelSlider(float amount)
     {
         levelSlider.fillAmount = amount;
     }
