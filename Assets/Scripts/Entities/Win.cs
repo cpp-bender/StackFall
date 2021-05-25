@@ -3,6 +3,7 @@
 public class Win : MonoBehaviour, IShapes
 {
     [SerializeField] private new CollisionTag tag;
+    [SerializeField] private PlayerData playerData;
     [SerializeField] private float rotateSpeed = 100;
 
     float IShapes.rotateSpeed { get => rotateSpeed; set => rotateSpeed = value; }
@@ -24,7 +25,7 @@ public class Win : MonoBehaviour, IShapes
         if (entity.tag == CollisionTag.player)
         {
             Debug.Log("You Win!");
-            collision.gameObject.GetComponent<PlayerController>().state = PlayerController.State.win;
+            playerData.State = State.win;
         }
     }
 }

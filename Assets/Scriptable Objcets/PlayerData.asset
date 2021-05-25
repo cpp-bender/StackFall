@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   canHit: 0
+  invincibleTime: 0
+  invincibleTimeFactor: 8
+  state: 0

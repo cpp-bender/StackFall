@@ -2,23 +2,16 @@
 
 public class PlayerController : MonoBehaviour, IEntity
 {
-    public enum State
-    {
-        idle, playing, invincible, dead, win
-    }
-
     [SerializeField] private PlayerData playerData;
     [SerializeField] private CameraData cameraData;
     [SerializeField] private LevelData levelData;
     [SerializeField] private GameObject fireParticle;
     [SerializeField] private LevelSpawner levelSpawner;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private UIController uiController;
     [SerializeField] private new CollisionTag tag;
 
-    [HideInInspector] public State state;
     private Rigidbody body;
-    private float invincibleTime;
-    private const float invincibleTimeFactor = 8;
     CollisionTag IEntity.tag { get => tag; set => tag = value; }
 
     private void Awake()
@@ -28,9 +21,17 @@ public class PlayerController : MonoBehaviour, IEntity
 
     private void Start()
     {
-        transform.position = new Vector3(transform.position.x, levelData.ObstacleCount / 2 + .5f, -1.5f);
+        transform.position = new Vector3(transform.position.x, levelData.CurrentObstacleCount / 2 + .5f, -1.5f);
+        playerData.CanHit = false;
         cameraController.SetCamPosition(transform.position);
-        state = State.playing;
+        playerData.State = State.idle;
+        levelData.ShatteredObstacleCount = 0;
+        GameManager.instance.ResetScore();
+    }
+
+    private void ChangeMaterial()
+    {
+        //TODO: Change player material each level
     }
 
     private void Update()
@@ -49,36 +50,36 @@ public class PlayerController : MonoBehaviour, IEntity
         if (Input.GetMouseButtonDown(0))
         {
             playerData.CanHit = true;
-            state = State.playing;
         }
         if (Input.GetMouseButtonUp(0))
         {
             playerData.CanHit = false;
-            state = State.idle;
+            playerData.State = State.idle;
         }
     }
 
     private void CheckCurrentState()
     {
-        if (state == State.idle)
+        if (playerData.State == State.idle)
         {
             fireParticle.SetActive(false);
         }
-        if (state == State.invincible)
+        if (playerData.State == State.invincible)
         {
             fireParticle.SetActive(true);
+            SoundController.instance.PlayPlayerInvincibleMusic();
         }
-        if (state == State.dead)
+        if (playerData.State == State.dead)
         {
             fireParticle.SetActive(false);
             Debug.Log("Game Over!");
         }
-        if (state == State.win)
+        if (playerData.State == State.win)
         {
             fireParticle.SetActive(false);
             levelSpawner.NextLevel();
         }
-        if (state == State.dead)
+        if (playerData.State == State.dead)
         {
             fireParticle.SetActive(false);
             Debug.Log("Game Over!");
@@ -90,7 +91,8 @@ public class PlayerController : MonoBehaviour, IEntity
         if (!playerData.CanHit)
         {
             MoveUp();
-            invincibleTime = 0;
+            playerData.InvincibleTime = 0;
+            playerData.State = State.idle;
             cameraData.CanFollow = false;
         }
         else
@@ -99,11 +101,13 @@ public class PlayerController : MonoBehaviour, IEntity
             if (entity.tag == CollisionTag.damageable)
             {
                 collision.transform.parent.GetComponent<ObstacleManager>().Shatter();
+                levelData.ShatteredObstacleCount++;
+                uiController.FillSlider(levelData.ShatteredObstacleCount / (float)levelData.CurrentObstacleCount);
                 SoundController.instance.PlayBreakStackMusic();
-                invincibleTime += Time.deltaTime * invincibleTimeFactor;
-                if (invincibleTime >= 1)
+                playerData.InvincibleTime += Time.deltaTime * playerData.InvincibleTimeFactor;
+                if (playerData.InvincibleTime >= 1)
                 {
-                    state = State.invincible;
+                    playerData.State = State.invincible;
                 }
                 cameraData.CanFollow = true;
                 GameManager.instance.AddScore();
@@ -111,9 +115,8 @@ public class PlayerController : MonoBehaviour, IEntity
             else if (entity.tag == CollisionTag.nondamageable)
             {
                 //Game ending
-                invincibleTime = 0;
-                state = State.dead;
-                GameManager.instance.ResetScore();
+                playerData.InvincibleTime = 0;
+                playerData.State = State.dead;
             }
         }
     }

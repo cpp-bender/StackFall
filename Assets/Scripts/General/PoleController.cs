@@ -6,7 +6,7 @@ public class PoleController : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale = new Vector3(1, levelData.ObstacleCount, 1);
+        transform.localScale = new Vector3(1, levelData.CurrentObstacleCount, 1);
         transform.localPosition = new Vector3(transform.position.x, transform.localScale.y, transform.position.z);
     }
 }

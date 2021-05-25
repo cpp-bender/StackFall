@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  playerData: {fileID: 11400000, guid: b7d693ece9982a842ae35949df6ba43f, type: 2}
   rotateSpeed: 100
 --- !u!1 &3293644397374515878
 GameObject:
@@ -234,4 +235,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 3
+  playerData: {fileID: 11400000, guid: b7d693ece9982a842ae35949df6ba43f, type: 2}
   rotateSpeed: 100

@@ -19,10 +19,16 @@ public class SoundController : MonoBehaviour
     [SerializeField] private Clip passedLevelClip;
     [SerializeField] private Clip playerDeadClip;
     [SerializeField] private Clip playerShatterClip;
+    [SerializeField] private Clip playerInvincibleClip;
 
     private void Awake()
     {
         Singleton();
+    }
+
+    private void Start()
+    {
+        StartBackgroundMusic();
     }
 
     private void Singleton()
@@ -47,7 +53,7 @@ public class SoundController : MonoBehaviour
         public float volume = .5f;
     }
 
-    public void StartBackgroundMusic()
+    private void StartBackgroundMusic()
     {
         gameSource.clip = backgroundClip.clip;
         gameSource.volume = backgroundClip.volume;
@@ -92,6 +98,15 @@ public class SoundController : MonoBehaviour
         musicSource.clip = playerShatterClip.clip;
         musicSource.volume = playerShatterClip.volume;
         musicSource.loop = playerShatterClip.onLoop;
+        musicSource.Play();
+    }
+
+    public void PlayPlayerInvincibleMusic()
+    {
+        //Invincible sound is dizzy
+        musicSource.clip = playerInvincibleClip.clip;
+        musicSource.volume = playerInvincibleClip.volume;
+        musicSource.loop = playerInvincibleClip.onLoop;
         musicSource.Play();
     }
 }

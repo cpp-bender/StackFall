@@ -169,6 +169,8 @@ MonoBehaviour:
   levelData: {fileID: 11400000, guid: 84be004fdf2a83a4ea22414da3c18066, type: 2}
   fireParticle: {fileID: 2670880750120688687}
   levelSpawner: {fileID: 0}
+  cameraController: {fileID: 0}
+  uiController: {fileID: 0}
   tag: 0
   state: 0
 --- !u!1001 &2672601194655171013

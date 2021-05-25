@@ -9,9 +9,11 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private GameObject winPrefab;
     [SerializeField] private LevelData levelData;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private UIController uiController;
     [HideInInspector] public GameObject[] obstaclePrefab = new GameObject[obstaclePrefabCount];
 
-    private GameObject polySurface = null, win = null;
+    private GameObject polySurface = null;
+    private GameObject win = null;
 
     public event System.Action<int, int> OnLevelChanged;
 
@@ -28,7 +30,7 @@ public class LevelSpawner : MonoBehaviour
     public void NextLevel()
     {
         levelData.Level++;
-        levelData.ObstacleCount++;
+        levelData.CurrentObstacleCount++;
         SceneManager.LoadScene(0);
     }
 
@@ -76,7 +78,7 @@ public class LevelSpawner : MonoBehaviour
 
     private void InstantiateObstacles()
     {
-        float obstacleStartHeight = levelData.ObstacleCount / 2;
+        float obstacleStartHeight = levelData.CurrentObstacleCount / 2;
         for (float posY = obstacleStartHeight; posY > 0; posY -= .5f)
         {
             polySurface = obstaclePrefab[Random.Range(levelData.StartIndex, levelData.EndIndex)];

@@ -1,16 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private const int startLevel = 1;
-    private const int startObstacleCount = 8;
-
     public static GameManager instance;
 
+    [SerializeField] UIController uiController;
     [SerializeField] LevelData levelData;
-    [SerializeField] private int score;
 
     private void Awake()
     {
@@ -19,31 +14,28 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        levelData.Level = startLevel;
-        levelData.ObstacleCount = startObstacleCount;
-        SoundController.instance.StartBackgroundMusic();
+        uiController.ChangeLevelText(levelData.Level);
     }
 
     private void Singleton()
     {
         if (instance)
         {
-            Destroy(gameObject);
+            return;
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
     public void AddScore()
     {
-        score++;
+        uiController.ChangeScore();
     }
 
     public void ResetScore()
     {
-        score = 0;
+        uiController.ResetScore();
     }
 }
