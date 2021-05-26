@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -12,6 +11,9 @@ public class SoundController : MonoBehaviour
 
     [Tooltip("Source for sounds that are called nonsimultaneous")]
     [SerializeField] private AudioSource musicSource;
+
+    [Tooltip("Source for winning music")]
+    [SerializeField] private AudioSource winSource;
 
     [SerializeField] private Clip backgroundClip;
     [SerializeField] private Clip jumpClip;
@@ -79,10 +81,10 @@ public class SoundController : MonoBehaviour
 
     public void PlayPassedLevelMusic()
     {
-        musicSource.clip = passedLevelClip.clip;
-        musicSource.volume = passedLevelClip.volume;
-        musicSource.loop = passedLevelClip.onLoop;
-        musicSource.Play();
+        winSource.clip = passedLevelClip.clip;
+        winSource.volume = passedLevelClip.volume;
+        winSource.loop = passedLevelClip.onLoop;
+        winSource.Play();
     }
 
     public void PlayPlayerDeadMusic()
@@ -108,5 +110,15 @@ public class SoundController : MonoBehaviour
         musicSource.volume = playerInvincibleClip.volume;
         musicSource.loop = playerInvincibleClip.onLoop;
         musicSource.Play();
+    }
+
+    public void TurnOnSounds()
+    {
+        transform.gameObject.SetActive(true);
+    }
+
+    public void TurnOffSounds()
+    {
+        transform.gameObject.SetActive(false);
     }
 }

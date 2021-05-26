@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "CameraData", menuName = "Stack Fall/Camera/Camera Data")]
 public class CameraData : ScriptableObject

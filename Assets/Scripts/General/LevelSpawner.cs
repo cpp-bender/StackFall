@@ -27,10 +27,11 @@ public class LevelSpawner : MonoBehaviour
         GenerateLevel();
     }
 
-    public void NextLevel()
+    public void LoadNextLevel()
     {
         levelData.Level++;
         levelData.CurrentObstacleCount++;
+        SoundController.instance.PlayPassedLevelMusic();
         SceneManager.LoadScene(0);
     }
 

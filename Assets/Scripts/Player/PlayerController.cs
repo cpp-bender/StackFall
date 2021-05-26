@@ -30,14 +30,6 @@ public class PlayerController : MonoBehaviour, IEntity
         ChangeMaterial();
     }
 
-    private void ChangeMaterial()
-    {
-        float r = Random.Range(20, 200) / (float)255;
-        float g = Random.Range(50, 100) / (float)255;
-        float b = Random.Range(30, 255) / (float)255;
-        playerData.Material.color = new Color(r, g, b, 1);
-    }
-
     private void Update()
     {
         CheckCurrentState();
@@ -51,20 +43,25 @@ public class PlayerController : MonoBehaviour, IEntity
 
     private void CheckInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !Utility.IgnoreUI() && playerData.State != State.dead)
         {
             playerData.CanHit = true;
+            uiController.TapToPlayText.gameObject.SetActive(false);
         }
         if (Input.GetMouseButtonUp(0))
         {
             playerData.CanHit = false;
-            playerData.State = State.idle;
             uiController.ResetCircleSlider();
         }
     }
 
     private void CheckCurrentState()
     {
+        if (playerData.State == State.dead)
+        {
+            uiController.OnGameOverUI();
+            fireParticle.SetActive(false);
+        }
         if (playerData.State == State.idle)
         {
             fireParticle.SetActive(false);
@@ -73,15 +70,10 @@ public class PlayerController : MonoBehaviour, IEntity
         {
             fireParticle.SetActive(true);
         }
-        if (playerData.State == State.dead)
-        {
-            fireParticle.SetActive(false);
-            Debug.Log("Game Over!");
-        }
         if (playerData.State == State.win)
         {
             fireParticle.SetActive(false);
-            levelSpawner.NextLevel();
+            levelSpawner.LoadNextLevel();
         }
     }
 
@@ -91,13 +83,12 @@ public class PlayerController : MonoBehaviour, IEntity
         {
             MoveUp();
             playerData.InvincibleTime = 0;
-            playerData.State = State.idle;
             cameraData.CanFollow = false;
         }
         else
         {
             var entity = collision.gameObject.GetComponent<IEntity>();
-            if (entity.tag == CollisionTag.damageable)
+            if (entity.tag == CollisionTag.damageable && playerData.State != State.dead)
             {
                 collision.transform.parent.GetComponent<ObstacleManager>().Shatter();
                 levelData.ShatteredObstacleCount++;
@@ -106,7 +97,7 @@ public class PlayerController : MonoBehaviour, IEntity
                 if (playerData.InvincibleTime >= 1)
                 {
                     playerData.State = State.invincible;
-                    SoundController.instance.PlayBreakStackMusic();
+                    SoundController.instance.PlayPlayerInvincibleMusic();
                 }
                 else
                 {
@@ -120,6 +111,7 @@ public class PlayerController : MonoBehaviour, IEntity
                 //Game ending
                 playerData.InvincibleTime = 0;
                 playerData.State = State.dead;
+                SoundController.instance.PlayPlayerDeadMusic();
             }
         }
     }
@@ -145,5 +137,13 @@ public class PlayerController : MonoBehaviour, IEntity
             body.velocity = Vector3.down * playerData.Speed * Time.fixedDeltaTime;
             uiController.FillCircleSlider(playerData.InvincibleTime);
         }
+    }
+
+    private void ChangeMaterial()
+    {
+        float r = Random.Range(20, 200) / (float)255;
+        float g = Random.Range(50, 100) / (float)255;
+        float b = Random.Range(30, 255) / (float)255;
+        playerData.Material.color = new Color(r, g, b, 1);
     }
 }

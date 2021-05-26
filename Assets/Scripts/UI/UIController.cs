@@ -9,10 +9,17 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Image circleSlider;
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private Image settingsImage;
+    [SerializeField] private Button volumeButton;
+    [SerializeField] private Text tapToPlayText;
+    [SerializeField] private Image gamePanel;
+    [SerializeField] private Image gameOverPanel;
 
     private Text currentLevelText;
     private Text nextLevelText;
     private int score;
+
+    public Text TapToPlayText { get => tapToPlayText; set => tapToPlayText = value; }
 
     private void Start()
     {
@@ -58,5 +65,35 @@ public class UIController : MonoBehaviour
     {
         score = 0;
         scoreText.text = score.ToString();
+    }
+
+    public void OnSettingButtonClicked()
+    {
+        SoundController.instance.PlayClickButtonMusic();
+        volumeButton.gameObject.SetActive(!volumeButton.gameObject.activeInHierarchy);
+    }
+
+    public void OnSoundButtonClicked()
+    {
+        if (volumeButton.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            Debug.Log("Turned off");
+            SoundController.instance.TurnOffSounds();
+            volumeButton.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Turned on");
+            SoundController.instance.TurnOnSounds();
+            volumeButton.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        volumeButton.transform.GetChild(0).gameObject.SetActive(!volumeButton.transform.GetChild(1).gameObject.activeInHierarchy);
+    }
+
+    public void OnGameOverUI()
+    {
+        gamePanel.gameObject.SetActive(false);
+        gameOverPanel.gameObject.SetActive(true);
+        gameOverPanel.transform.GetChild(1).gameObject.GetComponent<Text>().text = $"Score:{score}";
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4308be0f57a0ab54fb3d959b5a40c485, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  level: 5
-  currentObstacleCount: 66
-  shatteredObstacleCount: 0
+  level: 14
+  currentObstacleCount: 21
+  shatteredObstacleCount: 6
   startIndex: 0
   endIndex: 2

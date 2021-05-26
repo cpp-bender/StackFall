@@ -24,7 +24,6 @@ public class Win : MonoBehaviour, IShapes
         var entity = collision.gameObject.GetComponent<IEntity>();
         if (entity.tag == CollisionTag.player)
         {
-            Debug.Log("You Win!");
             playerData.State = State.win;
         }
     }
