@@ -6,3 +6,6 @@
 <img src = "Recordings/gamestart.png" >
 
 <img src = "Recordings/gameover.png" >
+
+## Gameplay
+<img src = "Recordings/gameplay.gif" >
